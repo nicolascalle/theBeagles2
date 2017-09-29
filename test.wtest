@@ -1,0 +1,73 @@
+import example.*
+
+describe "tests The Beagles2"{
+	var kike=new MusicoDeGrupo(60,[],true,20)
+	var soledad=new VocalistaPopular(55,[laSole],false,"amor")
+	var joaquin=new MusicoDeGrupo(60,[especialLaFamilia],true,5)
+	
+	var cisne=new Cancion("Cisne",312,"Hoy el viento se abrio quedo vacio el aire unavez mas y el manantial broto y nadie esta aquiy puedo ver que solo estallan las hojas al brillar")									   
+	var laFamilia=new Cancion("La familia",264,"Quiero brindar por mi gente sencilla, por el amor brindo por la familia")											
+	var eres=new Cancion("Eres",145,"Eres lo mejor que me pasó en la vida, no tengo duda, no habrá más nada después de ti. Ereslo que le dio brilloal día a día, y así será por siempre, no cambiará,hasta el final de mis días.")								  
+	var corazonAmericano=new Cancion("Corazon americano",154,"Cantacorazón, canta más alto, que tu pena al fin se va marchando, el nuevomilenio ha de encontrarnos, junto corazón, como soñamos")
+	var almaDeDiamante=new Cancion("Alma de diamante",216,"Ven a mí con tu dulce luz alma de diamante. Y aunque el sol se nuble después sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven así con la humanidad alma de diamante")
+	var crisantemo=new Cancion("Crisantemo",175,"Tócame junto a esta pared, yo quede por aquí... cuando no hubo más luz... quiero mirar a través de mi piel... Crisantemo, que se abrió... encuentra el camino hacia el cielo")			
+									
+	var especialLaFamilia=new Album("Especial la familia",[laFamilia],new Date(17,06,1992),100000,89000)
+	var laSole=new Album("La sole",[eres,corazonAmericano],new Date(04,02,2005),200000,130000)
+	var paraLosArboles=new Album("Para los arobles",[cisne,almaDeDiamante],new Date(04,02,2005),200000,130000)
+	var justCrisantemo=new Album("Just cisantemo",[crisantemo],new Date(04,02,2005),200000,130000)
+	
+fixture{
+	luisAlberto.agregarAlbumes([paraLosArboles,justCrisantemo])
+}
+
+
+test "La cancion Crisantemo es corta" {
+	assert.that(crisantemo.esCorta())
+}
+test "La cancion Alma de diamante no es corta" {
+	assert.notThat(almaDeDiamante.esCorta())
+}
+test "Soledad es minimalista"{
+	assert.that(soledad.esMinimalista())
+}
+test"Luis alberto no es minimalista"{
+	assert.notThat(luisAlberto.esMinimalista())
+}
+test"Joaquin no es minimalista"{
+	assert.notThat(joaquin.esMinimalista())
+}
+test"Las canciones de Luis Alberto que tienen la palabra 'cielo' son Crisantemo y Alma de diamante"{
+	assert.equals([crisantemo,almaDeDiamante],luisAlberto.cancionesQueContienen("cielo"))
+}
+test"Ninguna cancion de Luis Alberto contiene la palabra 'pujante"{
+	assert.equals([],luisAlberto.cancionesQueContienen("pujante"))
+}
+test"La obra de kike dura 0 segundos"{
+	assert.equals(0,kike.duracionObra())
+}
+test"La obra de soldedad dura 299 segundos"{
+	assert.equals(299,soledad.duracionObra())
+}
+test"La obra de Lui Alberto dura 703 segundos"{
+	assert.equals(703,luisAlberto.duracionObra())
+}
+test"La cancion mas larga de al album 'Para los arboles' es 'Alma de diamante'"{
+	assert.equals(almaDeDiamante,paraLosArboles.cancionMasLarga())
+}
+test"La cancion mas larga de al album 'La sole' es 'Eres'"{
+	assert.equals(eres,laSole.cancionMasLarga())
+}
+test"La cancion mas larga de al album 'Especial la familia' es 'La familia'"{
+	assert.equals(laFamilia,especialLaFamilia.cancionMasLarga())
+}
+test"Luis alberto la pego"{
+	assert.that(luisAlberto.laPego())
+}
+test"Soledad no la pego"{
+	assert.notThat(soledad.laPego())
+}
+test"Joaquin la pego"{
+	assert.that(joaquin.laPego())
+}
+}
